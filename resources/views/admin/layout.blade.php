@@ -10,7 +10,7 @@
 <nav>
     <a href="/admin/batches">Batches</a> |
     <a href="/admin/products">Products</a> |
-    <a href="/">Website</a>
+    <a href="/home">Website</a>
 </nav>
 
 <hr>

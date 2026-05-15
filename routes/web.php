@@ -32,8 +32,9 @@ Route::middleware('auth')->group(function () {
 });
 
 // Public
-Route::get('/', function () {
+Route::get('/home', function () {
     $batches = Batch::with('products')->latest()->get();
+//    dd($batches);
     return view('home', compact('batches'));
 });
 

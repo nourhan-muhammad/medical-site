@@ -12,20 +12,22 @@
             <th>Actions</th>
         </tr>
 
-        @foreach($batches as $batch)
-            <tr>
-                <td>{{ $batch->name }}</td>
-                <td>{{ $batch->launch_date }}</td>
-                <td>
-                    <a href="{{ route('batches.edit', $batch->id) }}">Edit</a>
+        @if($batches->count() > 0)
+            @foreach($batches as $batch)
+                <tr>
+                    <td>{{ $batch?->name }}</td>
+                    <td>{{ $batch?->launch_date }}</td>
+                    <td>
+                        <a href="{{ route('batches.edit', $batch?->id) }}">Edit</a>
 
-                    <form action="{{ route('batches.destroy', $batch->id) }}" method="POST" style="display:inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit">Delete</button>
-                    </form>
-                </td>
-            </tr>
-        @endforeach
+                        <form action="{{ route('batches.destroy', $batch?->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        @endif
     </table>
 @endsection

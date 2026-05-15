@@ -64,7 +64,7 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Product $product)
     {
         $batches = Batch::all();
         return view('admin.products.edit', compact('product', 'batches'));
