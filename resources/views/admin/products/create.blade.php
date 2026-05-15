@@ -1,28 +1,134 @@
-@extends('admin.layout')
+@extends('admin.admin-layout')
 
-@section('content')
-    <h2>Create Product</h2>
+@section('main-content')
 
-    <form method="POST" enctype="multipart/form-data" action="{{ route('products.store') }}">
-        @csrf
+    <div id="content">
+        @include('admin.topbar')
 
-        <label>Batch:</label>
-        <select name="batch_id">
-            @foreach($batches as $batch)
-                <option value="{{ $batch->id }}">{{ $batch->name }}</option>
-            @endforeach
-        </select><br><br>
+        <!-- Page Content -->
+        <div class="container-fluid">
 
-        <input type="text" name="name" placeholder="Product Name"><br><br>
+            <!-- Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
 
-        <textarea name="description"></textarea><br><br>
+                <h1 class="h3 text-gray-800">
 
-        <label>Image:</label>
-        <input type="file" name="image"><br><br>
+                    Create Product
 
-        <label>Certificate (PDF):</label>
-        <input type="file" name="certificate"><br><br>
+                </h1>
 
-        <button type="submit">Save</button>
-    </form>
+                <a href="{{ route('products.index') }}"
+                   class="btn btn-secondary">
+
+                    <i class="fas fa-arrow-left mr-1"></i>
+
+                    Back
+
+                </a>
+
+            </div>
+
+            <!-- Card -->
+            <div class="card shadow mb-4">
+
+                <div class="card-body">
+
+                    <form method="POST"
+                          enctype="multipart/form-data"
+                          action="{{ route('products.store') }}">
+
+                        @csrf
+
+                        <!-- Batch -->
+                        <div class="form-group">
+
+                            <label>Batch</label>
+
+                            <select name="batch_id"
+                                    class="form-control"
+                                    required>
+
+                                <option value="">-- Select Batch --</option>
+
+                                @foreach($batches as $batch)
+
+                                    <option value="{{ $batch->id }}">
+
+                                        {{ $batch->name }}
+
+                                    </option>
+
+                                @endforeach
+
+                            </select>
+
+                        </div>
+
+                        <!-- Name -->
+                        <div class="form-group">
+
+                            <label>Product Name</label>
+
+                            <input type="text"
+                                   name="name"
+                                   class="form-control"
+                                   placeholder="Enter product name"
+                                   required>
+
+                        </div>
+
+                        <!-- Description -->
+                        <div class="form-group">
+
+                            <label>Description</label>
+
+                            <textarea name="description"
+                                      rows="4"
+                                      class="form-control"
+                                      placeholder="Enter product description"></textarea>
+
+                        </div>
+
+                        <!-- Image -->
+                        <div class="form-group">
+
+                            <label>Image</label>
+
+                            <input type="file"
+                                   name="image"
+                                   class="form-control-file">
+
+                        </div>
+
+                        <!-- Certificate -->
+                        <div class="form-group">
+
+                            <label>Certificate (PDF)</label>
+
+                            <input type="file"
+                                   name="certificate"
+                                   class="form-control-file">
+
+                        </div>
+
+                        <!-- Submit -->
+                        <button type="submit"
+                                class="btn btn-primary">
+
+                            <i class="fas fa-save mr-1"></i>
+
+                            Save Product
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
 @endsection

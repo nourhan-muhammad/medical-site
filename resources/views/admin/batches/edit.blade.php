@@ -1,18 +1,108 @@
-@extends('admin.layout')
+@extends('admin.admin-layout')
 
-@section('content')
-    <h2>Edit Batch</h2>
+@section('main-content')
 
-    <form method="POST" action="{{ route('batches.update', $batch->id) }}">
-        @csrf
-        @method('PUT')
+    <div id="content">
 
-        <input type="text" name="name" value="{{ $batch->name }}"><br><br>
+@include('admin.topbar')
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
 
-        <input type="date" name="launch_date" value="{{ $batch->launch_date }}"><br><br>
+            <!-- Heading -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
 
-        <textarea name="notes">{{ $batch->notes }}</textarea><br><br>
+                <h1 class="h3 mb-0 text-gray-800">
 
-        <button type="submit">Update</button>
-    </form>
+                    Edit Batch
+
+                </h1>
+
+                <a href="{{ route('batches.index') }}"
+                   class="btn btn-secondary">
+
+                    <i class="fas fa-arrow-left mr-1"></i>
+
+                    Back
+
+                </a>
+
+            </div>
+
+            <!-- Card -->
+            <div class="card shadow mb-4">
+
+                <div class="card-body">
+
+                    <form method="POST"
+                          action="{{ route('batches.update', $batch->id) }}">
+
+                        @csrf
+                        @method('PUT')
+
+                        <!-- Batch Name -->
+                        <div class="form-group">
+
+                            <label>
+                                Batch Name
+                            </label>
+
+                            <input type="text"
+                                   name="name"
+                                   value="{{ $batch->name }}"
+                                   class="form-control"
+                                   placeholder="Enter batch name"
+                                   required>
+
+                        </div>
+
+                        <!-- Launch Date -->
+                        <div class="form-group">
+
+                            <label>
+                                Launch Date
+                            </label>
+
+                            <input type="date"
+                                   name="launch_date"
+                                   value="{{ $batch->launch_date }}"
+                                   class="form-control"
+                                   required>
+
+                        </div>
+
+                        <!-- Notes -->
+                        <div class="form-group">
+
+                            <label>
+                                Notes
+                            </label>
+
+                            <textarea name="notes"
+                                      rows="5"
+                                      class="form-control"
+                                      placeholder="Enter notes here...">{{ $batch->notes }}</textarea>
+
+                        </div>
+
+                        <!-- Submit -->
+                        <button type="submit"
+                                class="btn btn-primary">
+
+                            <i class="fas fa-save mr-1"></i>
+
+                            Update Batch
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+    </div>
+
 @endsection
