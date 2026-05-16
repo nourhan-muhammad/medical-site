@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Batch;
 
@@ -25,10 +26,15 @@ Route::get('/', function () {
         ->latest()
         ->get();
 
-    return view('home', compact('batches'));
+    return view('landing', compact('batches'));
 
 })->name('home');
 
+Route::get('/about', [HomeController::class, 'about'])->name('about');
+
+Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+
+Route::get('/products', [HomeController::class, 'products'])->name('products');
 
 /*
 |--------------------------------------------------------------------------
